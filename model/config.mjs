@@ -4,7 +4,7 @@ const sequelize = new Sequelize(
     {
         host: 'localhost',
         port: 5432,
-        database: 'booklist',
+        database: 'postgres',
         schema: 'booklist',
         dialect: 'postgres',
         username: 'booklistuser',
