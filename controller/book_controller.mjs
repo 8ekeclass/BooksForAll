@@ -10,6 +10,15 @@ async function showBookList(req, res, next) {
     }
 }
 
+async function showCommentList(req, res, next) {
+    try {
+        const myComments = await CommentList.loadBookUser(req.session.username)
+        res.render("commentlist", { comments: myComments })
+    } catch (error) {
+        next(error)
+    }
+}
+
 const addBook = async (req, res, next) => {
 
     try {
@@ -35,4 +44,18 @@ const deleteBook = async (req, res, next) => {
         next(error)//αν έγινε σφάλμα, με το next(error) θα κληθεί το middleware με τις παραμέτρους (error, req, res, next)
     }
 }
-export { showBookList, addBook, deleteBook }
+
+
+const addComment = async (req, res, next) => {
+    try {
+        await BookUser.addComment({
+            "comment": req.body["newBookComment"],
+            }, req.session.username)
+        next() //επόμενο middleware είναι το showCommentList
+    }
+    catch (error) {
+        next(error) //αν έγινε σφάλμα, με το next(error) θα κληθεί το middleware με τις παραμέτρους (error, req, res, next)
+    }
+}
+
+export { showBookList, addBook, deleteBook ,addComment ,showCommentList}

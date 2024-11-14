@@ -1,0 +1,39 @@
+<div class="row mt-5">
+    <div class="col-12">
+        <h2>Αλλοι Είπαν {{#if bookuser}} - ({{bookuser.length}}) {{/if}}</h2>
+        {{#if bookuser}}
+    </div>
+</div>
+<div class="table-responsive-sm">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Χρήστης</th>
+                <th>Σχόλιο</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each books,user}}
+                <tr>
+                    <td>{{this.username}}</td>
+                    <td>{{this.comment}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+{{/if}}
+{{#unless bookuser}}
+    <div class="row mt-5">
+        <div class="col"> Δεν υπάρχει κανένα Σχόλιο στο myBooks </div>
+    </div>
+{{/unless}}
+{{#if error}}
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <div class="alert alert-primary" role="alert">
+                {{error}}
+            </div>
+        </div>
+    </div>
+{{/if}}

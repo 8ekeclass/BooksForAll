@@ -44,6 +44,22 @@ router.get("/delete/:title",
     BookController.deleteBook,
     BookController.showBookList);
 
+//έλεγξε αν έχει συνδεθεί ο χρήστης, μετά δείξε τα Σχόλια
+router.get("/addcommentform", UserController.checkIfAuthenticated, BookController.showCommentList)    
+
+//δείξε τη φόρμα εισαγωγής νέου Σχολίου
+router.get("/addcommentform", UserController.checkIfAuthenticated, (req, res) => {
+    res.render("addcommentform")
+})
+
+//υποδέχεται την φόρμα υποβολής νέου Σχολίου
+router.post("/doaddcomment",
+    UserController.checkIfAuthenticated, //έλεγξε αν έχει συνδεθεί ο χρήστης,
+    Validator.validateNewBook,
+    BookController.addComment,
+    BookController.showCommentList,
+    BookController.showBookList)
+
 router.get("/logout", UserController.doLogout, (req, res) => {
     req.session.destroy() //καταστρέφουμε τη συνεδρία στο session store
     res.redirect("/home")

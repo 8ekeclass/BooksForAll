@@ -1,0 +1,43 @@
+<form action="/doaddcomment" method="post" class="myForm">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col">
+                <h1>Σχόλια</h1>
+            </div>
+        </div>
+        <fieldset class="border p-2 mb-3">
+            <legend class="w-auto">Εισάγετε ένα νέο Σχολιο</legend>
+            <div class="row mb-3">
+                <div class="col-md-2 col-sm-12 justify-content-end d-flex">
+                    <label for="BookTitle" class="col-form-label">Τίτλος</label>
+                </div>
+                <div class="col-md-10 col-sm-10">
+                    <input type="text" id="BookTitle" value="{{this.title}}" name="BookTitle" readonly>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-2 col-sm-12 justify-content-end d-flex">
+                    <label for="BookAuthor" class="col-form-label">Συγγραφέας</label>
+                </div>
+                <div class="col-md-10 col-sm-10 position-relative">
+                    <input type="text" id="BookAuthor" value="{{this.author}}" name="BookAuthor" readonly>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-2 col-sm-12 justify-content-end d-flex">
+                    <label for="newBookComment" class="col-form-label">Σχόλιο</label>
+                </div>
+                <div class="col-md-10 col-sm-10 position-relative">
+                    <input type="text" class="form-control {{#if message.newBookComment}} is-invalid {{/if}}" id="newBookComment" value="{{comment}}" name="newBookComment" placeholder="Γράψτε το Σχόλιο σας " required>
+                    <div class="valid-feedback"> Μια χαρά! </div>
+                    <div class="invalid-feedback">{{message.newBookComment.msg}} </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row mb-3">
+            <div class="col">
+                <button type="submit" class="btn btn-primary mb-3">Υποβολή</button>
+            </div>
+        </div>
+    </div>
+</form>

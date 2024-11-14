@@ -111,4 +111,4 @@ async function findOrAddUser() {
         }
 }
 
-export { addUser, login, loadBooks, addBook }
+export { addUser, login, loadBooks, addBook, deleteBook}
